@@ -1,6 +1,4 @@
 ---
-# This playbook installs and enables IIS on Windows hosts
-
 - name: Remove directory structure
   hosts: all
   gather_facts: false
