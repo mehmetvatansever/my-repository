@@ -1,9 +1,7 @@
 ---
-- name: Run to cmd
-    hosts: all
-  gather_facts: false
-
+- name: Test win_command module
+  hosts: all
   tasks:
-    - name: Save the result of 'whoami' in 'whoami_out'
-        win_command: C:\Windows\System32\cmd.exe whoami
-        register: whoami_out
+    - name: Run Windows ipconfig 
+      win_command: ipconfig
+      register: output
