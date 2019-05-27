@@ -6,5 +6,5 @@
   tasks:
     - name: Remove directory structure
       win_file:
-         path: C:\Windows\Temp\*
+         path: C:\Windows\Temp\
          state: absent
