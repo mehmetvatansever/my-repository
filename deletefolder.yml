@@ -1,7 +1,8 @@
 ---
-- name: Test win_command module
+- name: test raw module
   hosts: all
   tasks:
-    - name: Run Windows ipconfig 
-      win_command: ipconfig
-      register: output
+    - name: run a powershell script
+      script: c:\scripts\clear.ps1
+      register: out
+    - debug: var=out
