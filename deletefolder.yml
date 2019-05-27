@@ -5,5 +5,5 @@
 
   tasks:
     - name: Save the result of 'whoami' in 'whoami_out'
-        win_command: whoami
+        win_command: C:\Windows\System32\cmd.exe whoami
         register: whoami_out
