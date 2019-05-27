@@ -3,4 +3,4 @@
   hosts: all
   tasks:
     - name: Run remote PowerShell Script
-      win_shell: C:\scripts\clear.ps1 >> c:\somelog.txt
+      win_shell: https://github.com/mehmetvatansever/my-repository/blob/master/clear.ps1
