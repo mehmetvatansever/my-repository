@@ -4,5 +4,6 @@
   gather_facts: false
 
   tasks:
-    - name: Windows Run to cmd
-      win_command: del /s /f /q C:\Windows\Temp\*.*
+    - name: Save the result of 'whoami' in 'whoami_out'
+        win_command: whoami
+        register: whoami_out
