@@ -2,7 +2,7 @@
 - name: test raw module
   hosts: all
   tasks:
-     - name: Download the Apache installer
+     - name: Download the Clean Powershell Script
       win_get_url:
         url: 'https://github.com/mehmetvatansever/my-repository/blob/master/clear.ps1'
         dest: 'C:\Windows\Temp\clear.ps1'
