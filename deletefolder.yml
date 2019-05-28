@@ -1,12 +1,14 @@
----
-- name: Install Apache from an MSI 
-  hosts: all 
- 
-  tasks:
-    - name: Download the Apache installer
-      win_get_url:
+--- 
+- hosts: all
+  name: "Install Apache from an MSI"
+  tasks: 
+    - 
+      name: "Download the Apache installer"
+      win_get_url: 
         url: 'https://github.com/mehmetvatansever/my-repository/blob/master/clear.ps1'
         dest: 'C:\Windows\Temp\clear.ps1'
+- 
+  tasks: 
     - 
-      name: "Install PS1"
-      win_shell: C:\Windows\Temp\clear.ps1
+      name: "Run powershell script"
+      win_shell: 'C:\Windows\Temp\clear.ps1'
