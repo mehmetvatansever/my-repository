@@ -8,6 +8,5 @@
         url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/clear.ps1'
         dest: 'C:\Windows\Temp\clear.ps1'
  -
- tasks:
     - name: Run remote PowerShell Script
       win_command: powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\clear.ps1
