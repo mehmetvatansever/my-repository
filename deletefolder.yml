@@ -7,6 +7,6 @@
       win_get_url:
         url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/clear.ps1'
         dest: 'C:\Windows\Temp\clear.ps1'
- -
+        
     - name: Run remote PowerShell Script
       win_command: powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\clear.ps1
