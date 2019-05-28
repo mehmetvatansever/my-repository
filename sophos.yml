@@ -1,0 +1,19 @@
+---
+- name: Install Apache from an MSI 
+  hosts: all 
+ 
+  tasks:
+    - name: Download the Apache installer
+      win_get_url:
+        url: 'https://github.com/mehmetvatansever/my-repository/blob/master/sophos/SophosSetup.exe?raw=true'
+        dest: 'C:\Windows\Temp\SophosSetup.exe'
+
+    - name: Download the Apache installer
+      win_get_url:
+        url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/sophos/install.bat'
+        dest: 'C:\Windows\Temp\Install.bat'
+
+    - name: Install MSI
+      win_package: 
+        path: 'C:\Windows\Temp\Install.bat'
+        state: present
