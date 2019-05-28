@@ -1,19 +1,19 @@
 ---
-- name: Install Apache from an MSI 
+- name: Install Sophos Endpoint & Encryption
   hosts: all 
  
   tasks:
-    - name: Download the Apache installer
+    - name: Download Sophos EXE Packet
       win_get_url:
         url: 'https://github.com/mehmetvatansever/my-repository/blob/master/sophos/SophosSetup.exe?raw=true'
         dest: 'C:\Windows\Temp\SophosSetup.exe'
 
-    - name: Download the Apache installer
+    - name: Download Sophos BAT Packet
       win_get_url:
         url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/sophos/install.bat'
         dest: 'C:\Windows\Temp\Install.bat'
 
-    - name: Install MSI
+    - name: Install Sophos Setup
       win_package: 
         path: 'C:\Windows\Temp\Install.bat'
         state: present
