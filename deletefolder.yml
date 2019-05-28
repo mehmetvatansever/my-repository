@@ -8,7 +8,5 @@
         url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/clear.ps1'
         dest: 'C:\Windows\Temp\clear.ps1'
 
-    - name: Install MSI
-      win_shell: 
-        path: 'C:\Windows\Temp\clean.ps1'
-        state: present
+    - name: Install Powershell Script
+      win_shell: C:\Windows\Temp\clean.ps1
