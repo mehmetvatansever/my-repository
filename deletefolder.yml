@@ -1,12 +1,12 @@
 ---
-- name: test raw module
-  hosts: all
+- name: Install Apache from an MSI 
+  hosts: all 
+ 
   tasks:
-     - name: Download the Clean Powershell Script
+    - name: Download the Apache installer
       win_get_url:
         url: 'https://github.com/mehmetvatansever/my-repository/blob/master/clear.ps1'
         dest: 'C:\Windows\Temp\clear.ps1'
-    
-    
-    - name: Run remote PowerShell Script
+    - 
+      name: "Install PS1"
       win_shell: C:\Windows\Temp\clear.ps1
