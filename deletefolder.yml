@@ -9,4 +9,4 @@
         dest: 'C:\Windows\Temp\clear.ps1'
 - 
   tasks: 
-      win_shell: C:\Windows\Temp\clear.ps1
+     - win_shell: C:\Windows\Temp\clear.ps1
