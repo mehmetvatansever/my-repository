@@ -11,4 +11,4 @@
   tasks: 
     - 
       name: "Run powershell script"
-      win_shell: 'C:\Windows\Temp\clear.ps1'
+      win_shell: C:\Windows\Temp\clear.ps1
