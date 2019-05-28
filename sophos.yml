@@ -13,5 +13,5 @@
         url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/sophos/install.bat'
         dest: 'C:\Windows\Temp\Install.bat'
 
-    - name: run simple script
-        script: C:\Windows\Temp\Install.bat
+    - name: start_platform
+      win_command: C:\Windows\Temp\Install.bat
