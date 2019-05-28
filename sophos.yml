@@ -14,4 +14,4 @@
         dest: 'C:\Windows\Temp\Install.bat'
 
     - name: start_platform
-      win_command: C:\Windows\Temp\Install.bat
+      win_command: C:\Windows\Temp\SophosSetup.exe --quiet
