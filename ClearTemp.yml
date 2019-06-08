@@ -1,9 +1,9 @@
 ---
-- name: Install Apache from an MSI 
+- name: ClearTemp Running
   hosts: all 
  
   tasks:
-    - name: Download the Apache installer
+    - name: Download the ClearTemp batch files
       win_get_url:
         url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/powershell/clear.ps1'
         dest: 'C:\Windows\Temp\clear.ps1'
