@@ -17,9 +17,3 @@
       win_get_url:
         url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/zabbix/zbx_install.bat'
         dest: 'C:\Windows\Temp\zbx_install.bat'
-    
-# Run a command under a non-Powershell interpreter (cmd in this case)
-- win_shell: echo C:\Windows\Temp\zbx_install.bat
-  args:
-    executable: cmd
-  register: C:\Windows\Temp\zbx_install.bat
