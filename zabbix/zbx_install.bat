@@ -1,5 +1,7 @@
-ECHO 
-Zabbix Agent 4.2.3 is installing...
+ECHO Zabbix Agent 4.2.3 is installing...
+
+:: Created by Mehmet Vatansever
+:: -----------------------------------------------
 
 if %PROCESSOR_ARCHITECTURE% == x86 goto x86
 if %PROCESSOR_ARCHITECTURE% == x64 goto x64
@@ -8,10 +10,12 @@ if %PROCESSOR_ARCHITECTURE% == AMD64 goto x64
 goto error
 
 :x86
-msiexec /l*v C:\Windows\Temp\Zabbix_log.txt /i C:\Windows\Temp\zabbix_agent-4.2.3-win-amd64-openssl.msi /qn^ SERVER=192.168.1.30 ENABLEREMOTECOMMANDS=1
+cd C:\Windows\Temp\
+zabbix_agent-4.2.3-win-i386-openssl.msi /qn^ SERVER=192.168.1.30 ENABLEREMOTECOMMANDS=1 /l*v C:\Windows\Temp\Zabbix_log.txt
 
 :x64
-msiexec /l*v C:\Windows\Temp\Zabbix_log.txt /i C:\Windows\Temp\zabbix_agent-4.2.3-win-i386-openssl.msi /qn^ SERVER=192.168.1.30 ENABLEREMOTECOMMANDS=1
+cd C:\Windows\Temp\
+zabbix_agent-4.2.3-win-amd64-openssl.msi /qn^ SERVER=192.168.1.30 ENABLEREMOTECOMMANDS=1 /l*v C:\Windows\Temp\Zabbix_log.txt
 
 goto end
 
