@@ -32,8 +32,6 @@ rmdir /s /q C:\Zabbix
 rmdir /s /q "C:\Program Files\Zabbix"
 GOTO INSTALL
 
-:: -----------------------------------------------
-
 :INSTALL
 
 if %PROCESSOR_ARCHITECTURE% == x86 goto x86
