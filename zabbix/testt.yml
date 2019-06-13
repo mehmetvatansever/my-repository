@@ -1,0 +1,6 @@
+---
+- hosts: Windows
+
+  tasks:
+  - name: start_platform
+    win_command: run.bat
