@@ -44,11 +44,11 @@ goto error
 
 :x86
 cd C:\Windows\Temp\
-zabbix_agent-4.2.3-win-i386-openssl.msi /qn^ SERVER=192.168.1.30 ENABLEREMOTECOMMANDS=1 /l*v C:\Windows\Temp\Zabbix_log.txt /qn
+zabbix_agent-4.2.3-win-i386-openssl.msi /qn^ SERVER=192.168.1.30 ENABLEREMOTECOMMANDS=1 /l*v C:\Log\Zabbix.log.txt /qn
 
 :x64
 cd C:\Windows\Temp\
-zabbix_agent-4.2.3-win-amd64-openssl.msi /qn^ SERVER=192.168.1.30 ENABLEREMOTECOMMANDS=1 /l*v C:\Windows\Temp\Zabbix_log.txt /qn
+zabbix_agent-4.2.3-win-amd64-openssl.msi /qn^ SERVER=192.168.1.30 ENABLEREMOTECOMMANDS=1 /l*v C:\Log\Zabbix.txt /qn
 
 goto end
 
