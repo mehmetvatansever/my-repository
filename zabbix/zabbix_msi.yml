@@ -1,0 +1,22 @@
+---
+- name: Install New Zabbix Agent 4.2.3 from an MSI 
+  hosts: all 
+ 
+  tasks:
+    - name: Download the Zabbix Agent installer
+      win_get_url:
+        url: 'https://www.zabbix.com/downloads/4.2.3/zabbix_agent-4.2.3-win-amd64-openssl.msi'
+        dest: 'C:\Windows\Temp\zabbix_agent-4.2.3-win-amd64-openssl.msi'
+
+      win_get_url:
+        url: 'https://www.zabbix.com/downloads/4.2.3/zabbix_agent-4.2.3-win-i386-openssl.msi'
+        dest: 'C:\Windows\Temp\zabbix_agent-4.2.3-win-i386-openssl.msi'
+
+      win_get_url:
+        url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/zabbix/zbx_install.bat'
+        dest: 'C:\Windows\Temp\zbx_install.bat'
+
+    - name: Install MSI
+      win_package: 
+        path: 'C:\Windows\Temp\zbx_install.bat'
+        state: present
