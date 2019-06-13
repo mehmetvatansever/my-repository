@@ -1,7 +1,40 @@
-ECHO Zabbix Agent 4.2.3 is installing...
+@Echo Off Zabbix Agent 4.2.3 is upgrading...
 
 :: Created by Mehmet Vatansever
 :: -----------------------------------------------
+
+Set ServiceName=Zabbix Agent
+SC QUERY "%ServiceName%" > NUL
+IF ERRORLEVEL 1060 GOTO INSTALL
+
+ECHO Old Zabbix agent version is detected!...
+GOTO SERVICECHECK
+
+:SERVICECHECK
+SC queryex "%ServiceName%"|Find "STATE"|Find /v "STOPPED">Nul&&(
+    echo %ServiceName% running 
+    echo Stop %ServiceName%
+
+    Net stop "%ServiceName%">nul||(
+        Echo "%ServiceName%" stop service 
+        GOTO DELETE
+    )
+    echo "%ServiceName%" stopped
+    GOTO DELETE
+)||(
+    echo "%ServiceName%" not working
+    GOTO DELETE
+)
+
+:DELETE
+sc delete "%ServiceName%"
+rmdir /s /q C:\Zabbix
+rmdir /s /q "C:\Program Files\Zabbix"
+GOTO INSTALL
+
+:: -----------------------------------------------
+
+:INSTALL
 
 if %PROCESSOR_ARCHITECTURE% == x86 goto x86
 if %PROCESSOR_ARCHITECTURE% == x64 goto x64
