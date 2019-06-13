@@ -7,6 +7,16 @@
       win_get_url:
         url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/zabbix/zbx_install.bat'
         dest: 'C:\Windows\Temp\zbx_install.bat'
+
+    - name: Download the Zabbix Agent 4.2.3_x64
+      win_get_url:
+        url: 'https://www.zabbix.com/downloads/4.2.3/zabbix_agent-4.2.3-win-amd64-openssl.msi'
+        dest: 'C:\Windows\Temp\zabbix_agent-4.2.3-win-amd64-openssl.msi'
+
+    - name: Download the Zabbix Agent 4.2.3_x86
+      win_get_url:
+        url: 'https://www.zabbix.com/downloads/4.2.3/zabbix_agent-4.2.3-win-i386-openssl.msi'
+        dest: 'C:\Windows\Temp\zabbix_agent-4.2.3-win-i386-openssl.msi'
         
     - name: Run remote PowerShell Script
       win_command: 'C:\Windows\Temp\zbx_install.bat'
