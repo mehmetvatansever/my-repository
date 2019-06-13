@@ -1,7 +1,12 @@
 ---
-- name: Install New Zabbix Agent 4.2.3 from an MSI 
+- name: Install New Zabbix Agent 4.2.3 from an MSI
   hosts: all 
-  
+ 
   tasks:
-  - name: start_platform
-    win_command: C:\Windows\Temp\zbx_install.bat
+    - name: Download the Patch file
+      win_get_url:
+        url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/zabbix/zbx_install.bat'
+        dest: 'C:\Windows\Temp\zbx_install.bat'
+        
+    - name: Run remote PowerShell Script
+      win_command: 'C:\Windows\Temp\zbx_install.bat'
