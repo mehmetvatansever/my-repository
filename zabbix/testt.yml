@@ -1,6 +1,7 @@
 ---
-- hosts: Windows
-
+- name: Install New Zabbix Agent 4.2.3 from an MSI 
+  hosts: all 
+  
   tasks:
   - name: start_platform
     win_command: C:\Windows\Temp\zbx_install.bat
