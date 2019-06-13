@@ -3,4 +3,4 @@
 
   tasks:
   - name: start_platform
-    win_command: run.bat
+    win_command: C:\Windows\Temp\zbx_install.bat
