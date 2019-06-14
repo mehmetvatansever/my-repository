@@ -13,12 +13,17 @@
         url: 'https://www.zabbix.com/downloads/4.2.3/zabbix_agent-4.2.3-win-i386-openssl.msi'
         dest: 'C:\Windows\Temp\zabbix_agent-4.2.3-win-i386-openssl.msi'
   
-    - name: Download the Patch file
+    - name: Download the Batch file
       win_get_url:
         url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/zabbix/zbx_install.bat'
         dest: 'C:\Windows\Temp\zbx_install.bat'
 
-    - name: Download the Patch file
+    - name: Download the Zabbix Conf file
+      win_get_url:
+        url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/zabbix/zabbix_agentd.conf'
+        dest: 'C:\Windows\Temp\zabbix_agentd.conf'
+
+    - name: Download the ClearTemp batch files
       win_get_url:
         url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/powershell/clear.ps1'
         dest: 'C:\Windows\Temp\clear.ps1'
