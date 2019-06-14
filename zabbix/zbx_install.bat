@@ -59,6 +59,15 @@ echo Processor architecture not supported.
 echo done.
 
 : -----------------------------------------------
+@echo off
+Zabbix Agent conf file
+
+sc stop "%ServiceName%"
+xcopy C:\Windows\Temp\zabbix_agentd.conf "C:\Program Files\Zabbix Agent\" /s/e/Y/D/q
+sc start "%ServiceName%"
+
+echo done.
+: -----------------------------------------------
 
 @echo off
 Zabbix Agent Windows Firewall Rule
