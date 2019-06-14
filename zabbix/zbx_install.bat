@@ -64,7 +64,7 @@ Zabbix Agent conf file
 
 sc stop "%ServiceName%"
 del /s /q "C:\Program Files\Zabbix Agent\zabbix_agentd.conf"
-xcopy C:\Windows\Temp\zabbix_agentd.conf "C:\Program Files\Zabbix Agent\" /s/e/Y/D/q
+xcopy C:\Windows\Temp\zabbix_agentd.conf "C:\Program Files\Zabbix Agent\" /s /q
 sc start "%ServiceName%"
 
 echo done.
