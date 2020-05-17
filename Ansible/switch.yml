@@ -11,7 +11,7 @@
 
      register: config
 
-   - name: save output to /etc/ansible/backups
+   - name: save output to /home/mehmet/backups
      copy:
        content: "{{ config.stdout[0] }}"
-       dest: "/etc/ansible/backups/show_run_{{ inventory_hostname }}.txt"
+       dest: "/home/mehmet/backups/show_run_{{ inventory_hostname }}.txt"
