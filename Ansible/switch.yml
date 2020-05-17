@@ -1,6 +1,8 @@
 ---
 - hosts: all
+  user: mehmet
   become: yes
+  become_user: root
   gather_facts: true
   connection: local
 
