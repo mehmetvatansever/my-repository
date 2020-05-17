@@ -1,0 +1,22 @@
+---
+- hosts: switchs
+  gather_facts: true
+  connection: local
+
+  tasks:
+   - name: show run 
+     ios_command:
+       commands:
+         - show run 
+       authorize: yes
+       host: "{{ ansible_host }}"
+       username: "{{ username }}" 
+       password: "{{ password }}"
+       auth_pass: "{{ enable }}"
+
+     register: config
+
+   - name: save output to /etc/ansible/backups 
+     copy: 
+       content: "{{ config.stdout[0] }}"
+       dest: "/etc/ansible/backups/show_run_{{ inventory_hostname }}.txt"
