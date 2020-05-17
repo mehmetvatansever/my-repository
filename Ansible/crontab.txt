@@ -1,0 +1,15 @@
+[root@ansible ansible]# sudo chmod +x run.sh
+
+[root@ansible ansible]# cat run.sh
+cd /etc/ansible
+ansible-playbook backup_cisco_switchs.yml
+
+[root@ansible ansible]# crontab -e
+
+*/10 * * * * /etc/ansible/run.sh
+
+*/10 – Her On Dakika
+* – Her Saat
+* – Her Gün
+* – Her Ay
+* – Haftanın Her Günü
