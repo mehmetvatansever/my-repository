@@ -1,0 +1,9 @@
+[sw_kasimpasa]
+1.kat_ap_sw ansible_host=172.16.1.31
+BT_ODA ansible_host=172.21.15.222
+
+[sw_kasimpasa:vars]
+device_type=cisco_ios
+ansible_user=switchuser
+ansible_password=switchpassowrd
+ansible_enable=enablepassword
