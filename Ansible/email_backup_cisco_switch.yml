@@ -1,0 +1,46 @@
+---
+- hosts: sw_kasimpasa
+  gather_facts: true
+  connection: local
+
+  tasks:
+   - name: show run
+     ios_command:
+       commands:
+         - show run
+       authorize: yes
+       host: "{{ ansible_host }}"
+       username: "{{ ansible_user }}"
+       password: "{{ ansible_password }}"
+       auth_pass: "{{ ansible_enable }}"
+
+     register: config
+
+   - name: save output to /etc/ansible/backups
+     copy:
+       content: "{{ config.stdout[0] }}"
+       dest: "/etc/ansible/backups/show_run_{{ inventory_hostname }}.txt"
+
+   - name: Compress directory /path/to/foo/ into /path/to/foo.tgz
+     archive:
+       path: /etc/ansible/backups
+       dest: /etc/ansible/backups.tgz
+  
+   - name: Send Emails to a bunch of users, with Playbook Report as an attachment.
+     mail:
+       host: 172.21.1.7
+       port: 25
+       subject: Ansible Cisco Switch Backups
+       body: This is an Email generated using Ansible after execution of task.
+       from: ansible.alerts@bilimilac.com
+       to:
+       - mehmet.vatansever@bilimilac.com
+       - bogac.dinc@bilimilac.com
+       attach:
+       - /etc/ansible/backups.tgz
+       headers:
+       - mehmet.vatansever@bilimilac.com
+       - X-Special="Write something special about this Email"
+       charset: us-ascii
+     delegate_to: localhost
+     run_once: True
