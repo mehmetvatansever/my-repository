@@ -5,7 +5,7 @@
   tasks:
     - name: Download the Zabbix Agent x64 installer
       win_get_url:
-        url: 'https://www.zabbix.com/downloads/4.2.3/zabbix_agent-4.2.3-win-amd64-openssl.msi'
+        url: 'https://www.zabbix.com/downloads/4.2.8/zabbix_agent-4.2.8-windows-amd64-openssl.msi'
         dest: 'C:\Windows\Temp\zabbix_agent-4.2.3-win-amd64-openssl.msi'
   
     - name: Download the Zabbix Agent x86 installer
