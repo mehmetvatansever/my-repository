@@ -1,0 +1,9 @@
+---
+- name: Create Test Folder
+  hosts: all
+
+  tasks:
+     - name: Run a command under cmd
+       win_shell: mkdir C:\Test
+       args:
+         executable: cmd.exe
