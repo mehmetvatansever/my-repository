@@ -38,5 +38,13 @@ php -v
 #
 systemctl restart httpd
 #
+#php -v
 #
 #end
+#---------------------------------
+#if you want to check php
+#sudo nano /var/www/html/info.php
+#<?php
+#phpinfo();
+#?>
+#---------------------------------
