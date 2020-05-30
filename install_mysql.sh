@@ -1,4 +1,4 @@
-# Install CentOS 7 MySQL DB
+# Install CentOS 7 MySQL DB 5.7.30
 #
 sudo yum install -y wget
 #
