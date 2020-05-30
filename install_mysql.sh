@@ -23,6 +23,10 @@ sudo systemctl start mysqld
 #
 sudo grep 'temporary password' /var/log/mysqld.log
 #
+#
+rm -rf mysql57-community-release-el7-9.noarch.rpm
+#
+#
 # sudo mysql_secure_installation
 # mysqladmin -u root -p version
 #
