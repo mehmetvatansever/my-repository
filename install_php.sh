@@ -1,4 +1,4 @@
-# Install CentOS 7 PHP 7.1
+# Install CentOS 7 PHP 7.1.33
 #
 sudo yum update -y
 #
