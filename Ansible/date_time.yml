@@ -1,0 +1,35 @@
+---
+- hosts: all
+  gather_facts: false
+  connection: local
+
+  tasks:
+   - name: Ansible fact - ansible_date_time
+     debug:
+       var: ansible_date_time
+
+   - name: Ansible fact - ansible_date_time.iso8601
+     debug:
+       msg: "Host: {{ ansible_hostname }} Tarih: {{ ansible_date_time.date }} // Saat: {{ ansible_date_time.time }}"
+
+     register: config
+
+   - local_action: copy content={{ config.msg }} dest="/etc/ansible/saat/host_{{ ansible_hostname }}.txt"
+
+   - name: Send Emails to a bunch of users, with Playbook Report as an attachment.
+     mail:
+       host: xxxx
+       port: 25
+       subject: Ansible - Servers Time
+       body: "{{ lookup('file', '/etc/ansible/saat/host_mvatansever.txt', '/etc/ansible/saat/host_BLMRKWSFC01.txt') }}"
+       from: xxxx
+       to:
+       - xxxx
+#       attach:
+#       - /etc/ansible/backups.tgz
+#       headers:
+#       - mehmet.vatansever@bilimilac.com
+#       - X-Special="Write something special about this Email"
+       charset: us-ascii
+     delegate_to: localhost
+     run_once: True
