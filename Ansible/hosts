@@ -1,0 +1,12 @@
+[win_bilfar]
+HOST ansible_host=172.16.1.241
+
+[win_bilfar:vars]
+ansible_user=
+ansible_password=
+ansible_port=5985
+ansible_connection=winrm
+ansible_winrm_transport=kerberos
+ansible_winrm_scheme=http
+ansible_winrm_transport=ntlm
+ansible_winrm_server_cert_validation=ignore
