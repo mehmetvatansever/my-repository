@@ -1,0 +1,45 @@
+---
+- hosts: all
+  gather_facts: false
+  connection: local
+#-------------------------------------------------------------------------------------------
+  tasks:
+   - name: show run
+     ios_command:
+       commands:
+         - show running-config
+       authorize: yes
+       host: "{{ ansible_host }}"
+       username: "{{ ansible_user }}"
+       password: "{{ ansible_password }}"
+
+     register: config
+#-------------------------------------------------------------------------------------------
+   - name: save output to /var/lib/awx/projects/project/backup/
+     copy:
+       content: "{{ config.stdout[0] }}"
+       dest: "/var/lib/awx/projects/project/backup/show_run_{{ inventory_hostname }}.txt"
+
+   - name: Compress directory /path/to/foo/ into /path/to/foo.tgz
+     archive:
+       path: /var/lib/awx/projects/project/backup
+       dest: /var/lib/awx/projects/project/backup.tgz
+#-------------------------------------------------------------------------------------------
+   - name: Send Emails to a bunch of users, with Playbook Report as an attachment.
+     mail:
+       host: 192.168.1.1
+       port: 25
+       subject: Ansible - Cisco Device Backups
+       body: This is an Email generated using Ansible after execution of task.
+       from: ansible.alerts@xxx.com
+       to:
+       - name@xxxx.com
+       attach:
+       - /var/lib/awx/projects/project/backup.tgz
+       headers:
+       - name@xxxx.com
+       - X-Special="Write something special about this Email"
+       charset: us-ascii
+     delegate_to: localhost
+     run_once: True
+#-------------------------------------------------------------------------------------------
