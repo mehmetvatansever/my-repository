@@ -1,0 +1,20 @@
+---
+- name: ClearTemp Running
+  hosts: all
+
+  tasks:
+    - name: Download the ClearTemp batch files
+      win_get_url:
+        url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/powershell/clear.ps1'
+        dest: 'C:\Windows\Temp\clear.ps1'
+
+    - name: Download the Zabbix Agent 4.0.32 MSI File
+      win_get_url:
+        url: 'https://raw.githubusercontent.com/mehmetvatansever/my-repository/master/powershell/zabbix_agent-4.0.32-windows-amd64-openssl.msi'
+        dest: 'C:\Windows\Temp\zabbix_agent-4.0.32-windows-amd64-openssl.msi'
+
+    - name: Install the Zabbix Agent 4.0.32 MSI
+      win_command: 'msiexec /i C:\Windows\Temp\zabbix_agent-4.0.32-windows-amd64-openssl.msi /qn^ SERVER=172.23.45.11 ENABLEREMOTECOMMANDS=1 /qn'
+
+    - name: Run remote PowerShell Script - ClearTemp Batch File
+      win_command: powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\clear.ps1
