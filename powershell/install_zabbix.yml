@@ -1,5 +1,5 @@
 ---
-- name: ClearTemp Running
+- name: Install Zabbix Agent and ClearTemp Running
   hosts: all
 
   tasks:
