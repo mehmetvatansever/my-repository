@@ -1,0 +1,22 @@
+---
+- name: Install Desktop Central Agent
+  hosts: all
+  gather_facts: true
+
+  tasks:
+
+    - name: Copy Desktop Central Setup File
+      win_copy:
+        src: /etc/ansible/playbook/windows/DC/localsetup
+        dest: C:\Windows\Temp\
+
+    - name: Install Desktop Central Agent
+      win_command: 'msiexec /i C:\Windows\Temp\localsetup\DesktopCentralAgent.msi TRANSFORMS="DesktopCentralAgent.mst" ENABLESILENT=yes REBOOT=ReallySuppress /qn'
+
+    - name: Copy Clean Temp
+      win_copy:
+        src: /etc/ansible/playbook/windows/DC/clear.ps1
+        dest: C:\Windows\Temp\
+
+    - name: Run remote PowerShell Script
+      win_command: powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\clear.ps1
