@@ -22,8 +22,8 @@
       mail:
         host: 172.21.1.110
         port: 25
-        subject: Ansible - BILFARHOLDING Active Directory Users
-        body: BILFARHOLDING - Active Directory User List
+        subject: Ansible - Active Directory Users
+        body:  Active Directory User List
         from: ansible.alerts@xxx
         to:
         - xxxx@xxx.com
