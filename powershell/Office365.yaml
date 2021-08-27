@@ -1,0 +1,45 @@
+---
+- name: Export Azure Active Directory User List
+  hosts: BLMRKWDHCP
+  gather_facts: True
+
+  tasks:
+
+    - name: Run the Powershell Scripts
+      win_shell: |
+        $username = "admin@bilimilacportal.onmicrosoft.com"
+        $password = ConvertTo-SecureString "JIV0bB3YqHH04#" -AsPlainText -Force
+        $psCred = New-Object System.Management.Automation.PSCredential -ArgumentList ($username, $password)
+        $sessionOption = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck
+        Connect-AzureAD -Credential $psCred
+        mkdir C:\Windows\Temp\Export
+        Get-AzureADUser -All $True | select DisplayName,GivenName,Surname,Mail,Mobile,TelephoneNumber,JobTitle,Department,StreetAddress,State,PostalCode,City,UserPrincipalName,AccountEnabled,UsageLocation | Export-Csv -Path C:\Windows\Temp\Export\Office365.csv -NoTypeInformation -Encoding Unicode
+
+    - name: copy file
+      fetch: src='C:\Windows\Temp\Export\Office365.csv' dest=/var/lib/awx/projects/project/print/
+
+    - name: Copy a single file
+      win_copy:
+        src: /var/lib/awx/projects/project/scripts/clear.ps1
+        dest: C:\Windows\Temp\
+
+    - name: Run remote PowerShell Script
+      win_command: powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\clear.ps1
+
+    - name: Send Emails to a bunch of users, with Playbook Report as an attachment.
+      mail:
+        host: 172.21.1.110
+        port: 25
+        subject: Ansible - AZURE Active Directory Users
+        body: AZURE Active Directory User List
+        from: ansible.alerts@bilimilac.com
+        to:
+        - bt.group@bilimilac.com
+        attach:
+        - /var/lib/awx/projects/project/print/BLMRKWDHCP/C:/Windows/Temp/Export/Office365.csv
+        headers:
+        - mehmet.vatansever@bilimilac.com
+        - X-Special="Write something special about this Email"
+        charset: us-ascii
+      delegate_to: localhost
+      run_once: True
