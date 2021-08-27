@@ -1,0 +1,37 @@
+---
+- name: Active Directory All Users Export
+  hosts: all
+  gather_facts: True
+  tasks:
+
+    - name: Copy a single file
+      win_copy:
+        src: /var/lib/awx/projects/project/scripts
+        dest: C:\Windows\Temp\
+
+    - name: Run remote PowerShell Script
+      win_command: powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\scripts\ADUsersExport.ps1
+
+    - name: copy file
+      fetch: src='C:\Windows\Temp\scripts\info\AllADUsers.csv' dest=/var/lib/awx/projects/project/print/
+
+    - name: Run remote PowerShell Script
+      win_command: powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\scripts\clear.ps1
+
+    - name: Send Emails to a bunch of users, with Playbook Report as an attachment.
+      mail:
+        host: 172.21.1.110
+        port: 25
+        subject: Ansible - BILFARHOLDING Active Directory Users
+        body: BILFARHOLDING - Active Directory User List
+        from: ansible.alerts@xxx
+        to:
+        - xxxx@xxx.com
+        attach:
+        - /var/lib/awx/projects/project/print/BLMRKWDC04/C:/Windows/Temp/scripts/info/AllADUsers.csv
+        headers:
+        - xxx@xxx.com
+        - X-Special="Write something special about this Email"
+        charset: us-ascii
+      delegate_to: localhost
+      run_once: True
