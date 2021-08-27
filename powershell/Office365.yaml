@@ -1,14 +1,14 @@
 ---
 - name: Export Azure Active Directory User List
-  hosts: BLMRKWDHCP
+  hosts: all
   gather_facts: True
 
   tasks:
 
     - name: Run the Powershell Scripts
       win_shell: |
-        $username = "admin@bilimilacportal.onmicrosoft.com"
-        $password = ConvertTo-SecureString "JIV0bB3YqHH04#" -AsPlainText -Force
+        $username = "xxxx@bilimilacportal.onmicrosoft.com"
+        $password = ConvertTo-SecureString "xxxxxxxx" -AsPlainText -Force
         $psCred = New-Object System.Management.Automation.PSCredential -ArgumentList ($username, $password)
         $sessionOption = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck
         Connect-AzureAD -Credential $psCred
@@ -32,13 +32,13 @@
         port: 25
         subject: Ansible - AZURE Active Directory Users
         body: AZURE Active Directory User List
-        from: ansible.alerts@bilimilac.com
+        from: ansible.alert@xxx.com
         to:
-        - bt.group@bilimilac.com
+        - xxx@xxxc.com
         attach:
         - /var/lib/awx/projects/project/print/BLMRKWDHCP/C:/Windows/Temp/Export/Office365.csv
         headers:
-        - mehmet.vatansever@bilimilac.com
+        - xxxx@xxx.com
         - X-Special="Write something special about this Email"
         charset: us-ascii
       delegate_to: localhost
