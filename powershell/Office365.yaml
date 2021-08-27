@@ -7,7 +7,7 @@
 
     - name: Run the Powershell Scripts
       win_shell: |
-        $username = "xxxx@bilimilacportal.onmicrosoft.com"
+        $username = "xxxx@portal.onmicrosoft.com"
         $password = ConvertTo-SecureString "xxxxxxxx" -AsPlainText -Force
         $psCred = New-Object System.Management.Automation.PSCredential -ArgumentList ($username, $password)
         $sessionOption = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck
