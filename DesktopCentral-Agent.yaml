@@ -1,0 +1,61 @@
+---
+- name: Install Desktop Central Agent
+  hosts: all
+  gather_facts: True
+  vars_prompt:
+    - name: "application"
+      prompt: "Which application do you want to deploy?\n1- KSM_AGENT\n2- GBZ_AGENT\n3- CER_AGENT\n"
+      private: no
+
+  tasks:
+
+    - set_fact: app=KSM_AGENT
+      when: ( application == "1" )
+ 
+    - set_fact: app=GBZ_AGENT
+      when: ( application == "2" )
+
+    - set_fact: app=CER_AGENT
+      when: ( application == "3" )
+
+    - name: Copy Desktop Central Setup File
+      win_copy:
+        src: /etc/ansible/playbook/critical/DC/KSM
+        dest: C:\Windows\Temp\
+      when: ( application == "1" ) 
+
+    - name: Install Desktop Central Agent
+      win_shell: 'Start-Process -Wait -FilePath C:\Windows\Temp\KSM\Kasimpasa_Agent.exe -Argument "/silent" -PassThru'
+      when: ( application == "1" )
+
+    - name: Run remote PowerShell Script
+      win_command: powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\KSM\clear.ps1
+      when: ( application == "1" )
+
+    - name: Copy Desktop Central Setup File
+      win_copy:
+        src: /etc/ansible/playbook/critical/DC/GBZ
+        dest: C:\Windows\Temp\
+      when: ( application == "2" )
+
+    - name: Install Desktop Central Agent
+      win_shell: 'Start-Process -Wait -FilePath C:\Windows\Temp\GBZ\Gebze_Agent.exe -Argument "/silent" -PassThru'
+      when: ( application == "2" )
+
+    - name: Run remote PowerShell Script
+      win_command: powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\GBZ\clear.ps1
+      when: ( application == "2" )
+
+    - name: Copy Desktop Central Setup File
+      win_copy:
+        src: /etc/ansible/playbook/critical/DC/CER
+        dest: C:\Windows\Temp\
+      when: ( application == "3" )
+
+    - name: Install Desktop Central Agent
+      win_shell: 'Start-Process -Wait -FilePath C:\Windows\Temp\CER\Gebze_Agent.exe -Argument "/silent" -PassThru'
+      when: ( application == "3" )
+
+    - name: Run remote PowerShell Script
+      win_command: powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\CER\clear.ps1
+      when: ( application == "3" )
