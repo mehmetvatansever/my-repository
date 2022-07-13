@@ -1,0 +1,31 @@
+---
+- hosts: all
+  gather_facts: true
+  connection: local
+
+  tasks:
+   - name: TFTP SERVER IOS IMAGE UPLOAD CISCO SWITCH
+     ios_command:
+       commands:
+         - command: "copy tftp://172.21.1.73/cat9k_lite_iosxe_npe.17.06.03.SPA.bin bootflash:"
+           prompt: "cat9k_lite_iosxe_npe.17.06.03.SPA.bin"
+           answer: "\r"
+     vars:
+       ansible_command_timeout: 1800
+
+   - name: COPY IOS ANOTHER FLASH1 TO FLASH2 CISCO STACK SWITCH
+     ios_command:
+       commands:
+         - command: "copy flash:cat9k_lite_iosxe_npe.17.06.03.SPA.bin flash-2:"
+           prompt: "cat9k_lite_iosxe_npe.17.06.03.SPA.bin"
+           answer: "\r"
+     vars:
+       ansible_command_timeout: 1800
+
+   - name: SETTING BOOT IMAGE
+     ios_config:
+       lines:
+         - no boot system
+         - boot system bootflash:cat9k_lite_iosxe_npe.17.06.03.SPA.bin
+       match: none
+       save_when: always
