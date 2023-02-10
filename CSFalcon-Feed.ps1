@@ -1,4 +1,4 @@
-####__CrowdStrike Indicator Feed from Powershell Script__####
+####__Configure CrowdStrike Indicator Feed on Powershell Script__####
 #
 Invoke-WebRequest http://ip-or-domain-url/data.txt -OutFile C:\Windows\Temp\misp-ipv4.csv
 #
